@@ -30,10 +30,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/znlccy/airnet.git
+          uri: https://github.com/chenyyuan0528/airnet-config
           username: chenyuan_y@163.com
           password: 199961abcd
-          search-paths: /airnet-config
   redis:
     host: localhost
     database: 0
