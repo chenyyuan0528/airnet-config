@@ -1,0 +1,49 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: airnet-config-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.98.152.208:3307/db_anrnet?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 199961abcd
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery: # 服务发现配置
+        enabled: true
+        register: true
+        #deregister: true
+        prefer-ip-address: true
+        health-check-interval: 10s
+        health-check-critical-timeout: 30s
+        health-check-path: /actuator/health
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 应用名称+服务器IP+端口
+    config:
+      server:
+        git:
+          uri: https://github.com/znlccy/airnet.git
+          username: chenyuan_y@163.com
+          password: 199961abcd
+          search-paths: /airnet-config
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 5000
+

@@ -1,0 +1,43 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: airnet-zuul-gateway
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/db_airnet?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 199961abcd
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery: # 服务发现配置
+        enabled: true
+        register: true
+        #deregister: true
+        prefer-ip-address: true
+        #health-check-interval: 10s
+        #health-check-critical-timeout: 30s
+        #health-check-path: /health
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 应用名称+服务器IP+端口
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 5000
+management:
+  health:
+    consul:
+      enabled: false
+ribbon:
+  eureka:
+    enabled: true

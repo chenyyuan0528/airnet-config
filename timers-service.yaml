@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: timers-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/db_airnet?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 199961abcd
+
+server:
+  port: 8090
+
+location: guangzhou:guiyang:xian:changchun:beijing:shanghai:hangzhou
